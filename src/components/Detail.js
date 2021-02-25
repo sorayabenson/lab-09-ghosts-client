@@ -21,8 +21,6 @@ export default class Detail extends Component {
 
         const category_id = getCategoryId(ghost, categories);
 
-        console.log(ghost)
-
         this.setState({
             name: ghost.name,
             img: ghost.img,
@@ -35,6 +33,7 @@ export default class Detail extends Component {
         })
 
         console.log(this.state)
+
     }
 
     handleName = (e) => {
@@ -91,31 +90,31 @@ export default class Detail extends Component {
                 <h3>update a ghost</h3>
                 <form onSubmit={this.handleSubmit}>
                     <input type="text" 
-                    // placeholder="ghost name" 
+                    placeholder="ghost name" 
                     className="nameInput"
                     value={this.state.name} 
                     onChange={this.handleName} />
                     <input type="url" 
-                    // placeholder="image url" 
+                    placeholder="image url" 
                     className="urlInput" 
                     value={this.state.img} 
                     onChange={this.handleImg} />
 
                     <textarea 
                     wrap="soft"
-                    // placeholder="ghost description" 
+                    placeholder="ghost description" 
                     className="descriptionInput"
                     value={this.state.description} 
                     onChange={this.handleDescription} />
 
                     <div className="priceWrapper">
                         <input type="number" 
-                        // placeholder="price" 
+                        placeholder="price" 
                         className="priceInput"
                         value={this.state.price} 
                         onChange={this.handlePrice} />
                         <input type="text" 
-                        // placeholder="ghost currency" 
+                        placeholder="ghost currency" 
                         className="currencyInput"
                         value={this.state.price_currency} 
                         onChange={this.handleCurrency} />
@@ -129,7 +128,8 @@ export default class Detail extends Component {
                         value="true" 
                         id="true"
                         name="trustworthy"
-                        onChange={this.handleTrust}/>
+                        onChange={this.handleTrust}
+                        checked={true === this.state.trustworthy}/>
                         <label htmlFor="true">yes</label>
                         
                         <input
@@ -137,7 +137,9 @@ export default class Detail extends Component {
                         value="false" 
                         id="false"
                         name="trustworthy"
-                        onChange={this.handleTrust}/>
+                        onChange={this.handleTrust}
+                        checked={false === this.state.trustworthy}
+                        />
                         <label htmlFor="false">no</label>
 
                     </div>
@@ -156,7 +158,7 @@ export default class Detail extends Component {
                 </form>
 
                 <button
-                onClick={this.handleSubmit}>create!</button>
+                onClick={this.handleSubmit}>update!</button>
 
                 <button
                 onClick={this.handleDelete}

@@ -36,7 +36,7 @@ export async function updateGhost(id, oneLonelyGhost) {
 }
 
 export function getCategoryId(ghost, categories) {
-    const category = categories.find(category => ghost.category_id === category.name);
+    const category = categories.find(category => ghost.category_id === category.category_name);
 
-    return category;
+    return category.id;
 }
