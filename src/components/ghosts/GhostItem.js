@@ -5,7 +5,7 @@ export default class GhostItem extends Component {
     render() {
         return (
             <Link 
-            to={`${this.props.ghost.id}`}
+            to={`/detail/${this.props.ghost.id}`}
             className="li">
                 <img alt={this.props.ghost.name} src={this.props.ghost.img} />
             </Link>

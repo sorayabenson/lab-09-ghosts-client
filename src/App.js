@@ -24,7 +24,7 @@ export default class App extends Component {
                 render={(routerProps) => <Create {...routerProps} />}
             />
             <Route
-              path="/detail"
+              path="/detail/:id"
               exact
                 render={(routerProps) => <Detail {...routerProps} />}
             />
