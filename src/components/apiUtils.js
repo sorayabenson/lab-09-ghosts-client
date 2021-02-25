@@ -40,3 +40,13 @@ export function getCategoryId(ghost, categories) {
 
     return category.id;
 }
+
+export function handleCategoryName(category_id) {
+    
+    if(category_id === 1) {
+        return 'skill'
+    } else if(category_id === 2) {
+        return 'food'
+    } else return 'care';
+
+}

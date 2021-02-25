@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Create.css';
-import { makeGhost } from './apiUtils.js';
+import { makeGhost, handleCategoryName } from './apiUtils.js';
 
 export default class Create extends Component {
     state ={
@@ -54,66 +54,90 @@ export default class Create extends Component {
     }
 
     render() {
+        const category = handleCategoryName(this.state.category_id);
+
         return (
             <div className="main">
                 <h3>make a new ghost</h3>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" placeholder="ghost name" className="nameInput"
-                    value={this.state.name} 
-                    onChange={this.handleName} />
-                    <input type="url" placeholder="image url" className="urlInput" 
-                    value={this.state.img} 
-                    onChange={this.handleImg} />
 
-                    <textarea 
-                    wrap="soft"
-                    placeholder="ghost description" 
-                    className="descriptionInput"
-                    value={this.state.description} 
-                    onChange={this.handleDescription} />
+                <div className="formWrapper">
 
-                    <div className="priceWrapper">
-                        <input type="number" placeholder="price" className="priceInput"
-                        value={this.state.price} 
-                        onChange={this.handlePrice} />
-                        <input type="text" placeholder="ghost currency" className="currencyInput"
-                        value={this.state.price_currency} 
-                        onChange={this.handleCurrency} />
+                    <div className="ghostWrapper">
+                        <h3>{this.state.name}</h3>
+
+                        <img alt={this.state.name} src={this.state.img} />
+
+                        <p>{this.state.description}</p>
+
+                        <h6>price: {this.state.price} {this.state.price_currency}</h6>
+
+                        <h6>
+                            trustworthy: 
+                            {this.state.trustworthy
+                            ? ' yes'
+                            : ' no'}</h6>
+
+                        <h6>category: {category}</h6>
                     </div>
 
-                    <div className="trustworthyWrapper">
-                        <h6>trustworthy:</h6>
+                    <form onSubmit={this.handleSubmit}>
+                        <input type="text" placeholder="ghost name" className="nameInput"
+                        value={this.state.name} 
+                        onChange={this.handleName} />
+                        <input type="url" placeholder="image url" className="urlInput" 
+                        value={this.state.img} 
+                        onChange={this.handleImg} />
 
-                        <input 
-                        type="radio" 
-                        value="true" 
-                        id="true"
-                        name="trustworthy"
-                        onChange={this.handleTrust}/>
-                        <label htmlFor="true">yes</label>
-                        
-                        <input
-                        type="radio" 
-                        value="false" 
-                        id="false"
-                        name="trustworthy"
-                        onChange={this.handleTrust}/>
-                        <label htmlFor="false">no</label>
+                        <textarea 
+                        wrap="soft"
+                        placeholder="ghost description" 
+                        className="descriptionInput"
+                        value={this.state.description} 
+                        onChange={this.handleDescription} />
 
-                    </div>
+                        <div className="priceWrapper">
+                            <input type="number" placeholder="price" className="priceInput"
+                            value={this.state.price} 
+                            onChange={this.handlePrice} />
+                            <input type="text" placeholder="ghost currency" className="currencyInput"
+                            value={this.state.price_currency} 
+                            onChange={this.handleCurrency} />
+                        </div>
 
-                    <div className="categoryWrapper">
-                        <h6>category:</h6>
-                        <select
-                        value={this.state.category_id} 
-                        onChange={this.handleCategory}>
-                            <option value="1">skill</option>
-                            <option value="2">food</option>
-                            <option value="3">care</option>
-                        </select>
-                    </div>
+                        <div className="trustworthyWrapper">
+                            <h6>trustworthy:</h6>
 
-                </form>
+                            <input 
+                            type="radio" 
+                            value="true" 
+                            id="true"
+                            name="trustworthy"
+                            onChange={this.handleTrust}/>
+                            <label htmlFor="true">yes</label>
+                            
+                            <input
+                            type="radio" 
+                            value="false" 
+                            id="false"
+                            name="trustworthy"
+                            onChange={this.handleTrust}/>
+                            <label htmlFor="false">no</label>
+
+                        </div>
+
+                        <div className="categoryWrapper">
+                            <h6>category:</h6>
+                            <select
+                            value={this.state.category_id} 
+                            onChange={this.handleCategory}>
+                                <option value="1">skill</option>
+                                <option value="2">food</option>
+                                <option value="3">care</option>
+                            </select>
+                        </div>
+
+                    </form>
+                </div>
 
                 <button
                 onClick={this.handleSubmit}>create!</button>
