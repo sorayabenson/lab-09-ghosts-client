@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
+import Header from './components/Header.js';
 import Home from './components/Home.js';
 import Create from './components/Create.js';
 import Detail from './components/Detail.js';
@@ -10,6 +11,7 @@ export default class App extends Component {
     return (
       <div>
         <Router>
+          <Header />
           <Switch>
             <Route
               path="/"
