@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Create.css';
-import { makeGhost, handleCategoryName } from './apiUtils.js';
+import { makeGhost, handleCategoryName, handleTrustworthyDisplay } from './apiUtils.js';
 
 export default class Create extends Component {
     state ={
@@ -39,8 +39,9 @@ export default class Create extends Component {
         this.setState({ price_currency: e.target.value });
     }
 
-    handleTrust = (e) => {
-        this.setState({ trustworthy: e.target.value });
+    handleTrust = async (e) => {
+        await this.setState({ trustworthy: e.target.value });
+        console.log(this.state.trustworthy)
     }
 
     handleSubmit = async (e) => {
@@ -54,7 +55,10 @@ export default class Create extends Component {
     }
 
     render() {
-        const category = handleCategoryName(this.state.category_id);
+
+        let trust = handleTrustworthyDisplay(this.state.trustworthy);
+
+        let category = handleCategoryName(this.state.category_id);
 
         return (
             <div className="main">
@@ -72,10 +76,7 @@ export default class Create extends Component {
                         <h6>price: {this.state.price} {this.state.price_currency}</h6>
 
                         <h6>
-                            trustworthy: 
-                            {this.state.trustworthy
-                            ? ' yes'
-                            : ' no'}</h6>
+                            trustworthy: {trust}</h6>
 
                         <h6>category: {category}</h6>
                     </div>
