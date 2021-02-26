@@ -50,3 +50,10 @@ export function handleCategoryName(category_id) {
     } else return 'care';
 
 }
+
+export function handleTrustworthyDisplay(trustworthy) {
+    
+    if(trustworthy === true) {
+        return 'yes'
+    } else return 'no';
+}

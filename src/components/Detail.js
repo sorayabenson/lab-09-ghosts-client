@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { deleteGhost, getCategories, getCategoryId, getGhost, updateGhost, handleCategoryName } from './apiUtils';
+import { deleteGhost, getCategories, getCategoryId, getGhost, updateGhost, handleCategoryName, handleTrustworthyDisplay } from './apiUtils';
 import './Detail.css';
 
 export default class Detail extends Component {
@@ -32,8 +32,6 @@ export default class Detail extends Component {
             owner_id: ghost.owner_id,
         })
 
-        console.log(this.state)
-
     }
 
     handleName = (e) => {
@@ -48,8 +46,8 @@ export default class Detail extends Component {
         this.setState({ description: e.target.value });
     }
 
-    handleCategory = (e) => {
-        this.setState({ category_id: Number(e.target.value) });
+    handleCategory = async (e) => {
+        await this.setState({ category_id: Number(e.target.value) });
     }
 
     handlePrice = (e) => {
@@ -60,8 +58,9 @@ export default class Detail extends Component {
         this.setState({ price_currency: e.target.value });
     }
 
-    handleTrust = (e) => {
-        this.setState({ trustworthy: e.target.value });
+    handleTrust = async (e) => {
+        await this.setState({ trustworthy: e.target.value });
+        console.log(this.state.trustworthy)
     }
 
     handleSubmit = async (e) => {
@@ -70,7 +69,7 @@ export default class Detail extends Component {
         await updateGhost(this.props.match.params.id, this.state);
 
         this.props.history.push('/ghosts');
-        console.log(this.state);
+
         window.location.pathname = '/';
     }
     
@@ -80,14 +79,16 @@ export default class Detail extends Component {
         await deleteGhost(this.props.match.params.id);
 
         this.props.history.push('/ghosts');
-        console.log(this.state);
+
         window.location.pathname = '/';
     }
 
+
     render() {
 
+        // let trust = handleTrustworthyDisplay(this.state.trustworthy);
 
-        const category = handleCategoryName(this.state.category_id);
+        let category = handleCategoryName(this.state.category_id);
 
         return (
             <div className="main">
@@ -106,10 +107,8 @@ export default class Detail extends Component {
                         <h6>price: {this.state.price} {this.state.price_currency}</h6>
 
                         <h6>
-                            trustworthy: 
-                            {this.state.trustworthy
-                            ? ' yes'
-                            : ' no'}</h6>
+                            trustworthy: {this.state.trustworthy}
+                        </h6>
 
                         <h6>category: {category}</h6>
 
@@ -156,7 +155,8 @@ export default class Detail extends Component {
                             id="true"
                             name="trustworthy"
                             onChange={this.handleTrust}
-                            checked={true === this.state.trustworthy}/>
+                            // checked={true === this.state.trustworthy}
+                            />
                             <label htmlFor="true">yes</label>
                             
                             <input
@@ -165,7 +165,7 @@ export default class Detail extends Component {
                             id="false"
                             name="trustworthy"
                             onChange={this.handleTrust}
-                            checked={false === this.state.trustworthy}
+                            // checked={false === this.state.trustworthy}
                             />
                             <label htmlFor="false">no</label>
 
