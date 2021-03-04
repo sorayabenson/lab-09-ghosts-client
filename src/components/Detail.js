@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { deleteGhost, getCategories, getCategoryId, getGhost, updateGhost, handleCategoryName, handleTrustworthyDisplay } from './apiUtils';
+import { deleteGhost, getCategories, getCategoryId, getGhost, updateGhost, handleCategoryName } from './apiUtils';
 import './Detail.css';
 
 export default class Detail extends Component {
