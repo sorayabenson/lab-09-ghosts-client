@@ -51,9 +51,9 @@ export function handleCategoryName(category_id) {
 
 }
 
-// export function handleTrustworthyDisplay(trustworthy) {
+export function handleTrustworthyDisplay(trustworthy) {
     
-//     if(trustworthy === true) {
-//         return 'yes'
-//     } else return 'no';
-// }
+    if(trustworthy === true) {
+        return 'yes'
+    } else return 'no';
+}
