@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Create.css';
-import { makeGhost, handleCategoryName } from './apiUtils.js';
+import { makeGhost, handleCategoryName, handleTrustworthyDisplay } from './apiUtils.js';
 
 export default class Create extends Component {
     state ={
@@ -56,7 +56,7 @@ export default class Create extends Component {
 
     render() {
 
-        // let trust = handleTrustworthyDisplay(this.state.trustworthy);
+        let trust = handleTrustworthyDisplay(this.state.trustworthy);
 
         let category = handleCategoryName(this.state.category_id);
 
